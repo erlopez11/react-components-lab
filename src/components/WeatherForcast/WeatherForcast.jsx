@@ -1,14 +1,26 @@
 import './WeatherForcast.css';
+import WeatherIcon from '../WeatherIcon/WeatherIcon';
+import WeatherData from '../WeatherData/WeatherData';
 
-const WeatherForecast = (props) => {
-    const {day, img, imgAlt, conditions, time} = props;
+const WeatherForecast = ({forecasts}) => {
     return (
-        <div className="weather">
-            <h2>{day}</h2>
-            <img src={img} alt={imgAlt}/>
-            <p><span>Conditions: </span>{conditions}</p>
-            <p><span>Time: </span>{time}</p>
-        </div>
+        <>
+          {forecasts.map((forecast, index) => (
+            <div className='weather'>
+                <WeatherIcon
+                    key={index}
+                    img={forecast.img}
+                    text={forecast.imgAlt}
+                />
+                <WeatherData
+                    key={index}
+                    day={forecast.day}
+                    conditions={forecast.conditions}
+                    time={forecast.time}
+                />
+            </div>
+          ))}
+        </>
     );
 }
 
